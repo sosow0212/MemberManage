@@ -21,9 +21,10 @@ public class Member {
 
     private String type; // 등록종목
 
-//    private int day; // 신청기간 (ex: 90일)
     private String day; // 신청일자 (ex: 2021-09-22)
 
     private int last; // 잔여일수
+
+    private int money; // 지불금액
 
 }
