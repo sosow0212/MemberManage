@@ -19,13 +19,11 @@ public class Member {
 
     private String name; // 이름
 
-    private String type; // 등록 종목
+    private String type; // 등록종목
 
-    private int day; // 등록 일 수 (ex: 90일)
+//    private int day; // 신청기간 (ex: 90일)
+    private String day; // 신청일자 (ex: 2021-09-22)
 
     private int last; // 잔여일수
 
-    private String startDay; // 가입일자
-
-    private String endDay; // 종료일자
 }

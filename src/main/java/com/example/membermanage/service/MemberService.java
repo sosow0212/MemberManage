@@ -3,9 +3,11 @@ package com.example.membermanage.service;
 import com.example.membermanage.entity.Member;
 import com.example.membermanage.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MemberService {
 
     @Autowired

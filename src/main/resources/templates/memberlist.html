@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Member List</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>등급</th>
+            <th>이름</th>
+            <th>등록내용</th>
+            <th>신청일자</th>
+            <th>잔여일수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member : ${list}">
+            <th th:text="${member.getId()}">ID 1번</th>
+            <td th:text="${member.getGrade()}">등급-실버</td>
+            <td th:text="${member.getName()}">홍길동</td>
+            <td th:text="${member.getType()}">헬스, 필라테스</td>
+            <td th:text="${member.getDay()}">2021-09-21 신청</td>
+            <td th:text="${member.getLast()}">30일 남았습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
