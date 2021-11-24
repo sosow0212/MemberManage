@@ -22,7 +22,9 @@
         <tr th:each="member : ${list}">
             <th th:text="${member.getId()}">ID 1번</th>
             <td th:text="${member.getGrade()}">등급-실버</td>
-            <td th:text="${member.getName()}">홍길동</td>
+            <td>
+                <a th:text="${member.getName()}" th:href="@{/member/view(id=${member.id})}">홍길동</a>
+            </td>
             <td th:text="${member.getType()}">헬스, 필라테스</td>
             <td th:text="${member.getDay()}">2021-09-21 신청</td>
             <td th:text="${member.getLast()}">30일 남았습니다.</td>
@@ -30,5 +32,7 @@
         </tr>
         </tbody>
     </table>
+
+    <button><a href="/member/write">글쓰기</a></button>
 </body>
 </html>
