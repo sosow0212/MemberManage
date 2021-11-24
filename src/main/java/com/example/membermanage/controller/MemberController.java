@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -59,5 +60,36 @@ public class MemberController {
     public String memberDelete(Integer id) {
         memberService.memberDelete(id);
         return "redirect:/member/list";
+    }
+
+
+    // 게시글 수정 페이지
+    @GetMapping("/member/modify/{id}")
+    public String memberModify(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("member", memberService.memberView(id));
+        return "membermodify";
+    }
+
+
+    // 게시글 수정 처리
+    @PostMapping("/member/update{id}")
+    public String memberUpdate(@PathVariable("id") Integer id, Member member) {
+        Member update = memberService.memberView(id);
+
+        update.setGrade(member.getGrade());
+        update.setName(member.getName());
+        update.setType(member.getType());
+        update.setMoney(member.getMoney());
+
+        // 계산작업 - 추후에 진행
+        String newDay = "2021-12-25"; // 임의로 신청일자 설정
+        int newLast = 100; // 임의로 잔여일수 설정
+
+        update.setDay(newDay);
+        update.setLast(newLast);
+
+        memberService.write(update);
+        return "redirect/member/list";
+
     }
 }
