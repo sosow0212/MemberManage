@@ -72,7 +72,7 @@ public class MemberController {
 
 
     // 게시글 수정 처리
-    @PostMapping("/member/update{id}")
+    @PostMapping("/member/update/{id}")
     public String memberUpdate(@PathVariable("id") Integer id, Member member) {
         Member update = memberService.memberView(id);
 
@@ -89,7 +89,7 @@ public class MemberController {
         update.setLast(newLast);
 
         memberService.write(update);
-        return "redirect/member/list";
+        return "redirect:/member/list";
 
     }
 }

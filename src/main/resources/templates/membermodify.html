@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>회원 수정</h1>
+    <form th:action="@{/member/update/{id}(id=${member.id})}" method="post">
+        <label for="grade">회원등급</label>
+        <input name="grade" id="grade" type="text">
+
+        <label for="name">이름</label>
+        <input name="name" id="name" type="text">
+
+        <label for="type">등록종목</label>
+        <input name="type" id="type" type="text">
+
+        <!--            <label for="day">신청일자</label>-->
+        <!--            <input name="day" id="day" type="text">-->
+
+        <!--            <label for="last">잔여일수</label>-->
+        <!--            <input name="last" id="last" type="text">-->
+
+        <label for="money">지불금액</label>
+        <input name="money" id="money" type="text">
+
+        <button type="submit">등록하기</button>
+    </form>
+    <a href="/member/list"><button>돌아가기</button></a>
+
+</div>
+</body>
+</html>
