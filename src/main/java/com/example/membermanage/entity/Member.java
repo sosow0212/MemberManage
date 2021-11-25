@@ -23,6 +23,8 @@ public class Member {
 
     private String day; // 신청일자 (ex: 2021-09-22)
 
+    private String end; // 종료일자 (신청일자day + 잔여일수last)
+
     private int last; // 잔여일수
 
     private int money; // 지불금액

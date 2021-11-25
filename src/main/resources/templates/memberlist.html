@@ -13,6 +13,7 @@
             <th>이름</th>
             <th>등록내용</th>
             <th>신청일자</th>
+            <th>마감일자</th>
             <th>잔여일수</th>
             <th>지불금액</th>
 
@@ -27,6 +28,7 @@
             </td>
             <td th:text="${member.getType()}">헬스, 필라테스</td>
             <td th:text="${member.getDay()}">2021-09-21 신청</td>
+            <td th:text="${member.getEnd()}">2021-12-21 종료</td>
             <td th:text="${member.getLast()}">30일 남았습니다.</td>
             <td th:text="${member.getMoney()}">30000원 지불</td>
         </tr>

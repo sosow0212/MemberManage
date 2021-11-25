@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -37,10 +39,14 @@ public class MemberController {
     public String memberWriting(Member member, Model model) {
 
         // ** 계산 영역 추후에 수정 **
-        // 신청일자는 임의로 설정 - proto1
-        member.setDay("2021-01-01");
-        // 잔여일자도 임의로 설정 - proto1
-        member.setLast(30);
+
+        // 신청일자
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String dateString = format.format(date);
+        member.setDay(dateString); // 신청일자 셋팅
+        // end 잔여일자도 임의로 설정 - proto1
+        member.setEnd("2022-12-01");
 
         memberService.write(member);
         return "redirect:/member/list";
@@ -81,12 +87,16 @@ public class MemberController {
         update.setType(member.getType());
         update.setMoney(member.getMoney());
 
-        // 계산작업 - 추후에 진행
-        String newDay = "2021-12-25"; // 임의로 신청일자 설정
-        int newLast = 100; // 임의로 잔여일수 설정
 
-        update.setDay(newDay);
-        update.setLast(newLast);
+        // 신청일자 설정
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String dateString = format.format(date);
+        update.setDay(dateString);
+        // 신청일자 셋팅 완료
+
+        // end 임의로 설정
+        update.setEnd("2022-12-01");
 
         memberService.write(update);
         return "redirect:/member/list";
