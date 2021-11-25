@@ -9,22 +9,22 @@
     <h1>회원 수정</h1>
     <form th:action="@{/member/update/{id}(id=${member.id})}" method="post">
         <label for="grade">회원등급</label>
-        <input name="grade" id="grade" type="text">
+        <input name="grade" id="grade" type="text" th:placeholder="${member.getGrade()}">
 
         <label for="name">이름</label>
-        <input name="name" id="name" type="text">
+        <input name="name" id="name" type="text" th:placeholder="${member.getName()}">
 
         <label for="type">등록종목</label>
-        <input name="type" id="type" type="text">
+        <input name="type" id="type" type="text"  th:placeholder="${member.getType()}">
 
         <!--            <label for="day">신청일자</label>-->
         <!--            <input name="day" id="day" type="text">-->
 
         <label for="last">신청기간</label>
-        <input name="last" id="last" type="text">
+        <input name="last" id="last" type="text" th:placeholder="${member.getLast()}">
 
         <label for="money">지불금액</label>
-        <input name="money" id="money" type="text">
+        <input name="money" id="money" type="text" th:placeholder="${member.getMoney()}">
 
         <button type="submit">등록하기</button>
     </form>

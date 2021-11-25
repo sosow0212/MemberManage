@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -40,13 +41,19 @@ public class MemberController {
 
         // ** 계산 영역 추후에 수정 **
 
-        // 신청일자
+        // 신청일자 셋팅
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateString = format.format(date);
         member.setDay(dateString); // 신청일자 셋팅
-        // end 잔여일자도 임의로 설정 - proto1
-        member.setEnd("2022-12-01");
+
+        // 종료일자 셋팅
+        Calendar cal = Calendar.getInstance(); // 날짜 계산을 위해 Calendar 추상클래스 선언 및 getInstance() 메서드 사용
+        cal.setTime(date);
+        cal.add(Calendar.DATE, member.getLast());
+        String dateString2 = format.format(cal.getTime());
+        member.setEnd(dateString2);
+
 
         memberService.write(member);
         return "redirect:/member/list";
@@ -88,15 +95,23 @@ public class MemberController {
         update.setMoney(member.getMoney());
 
 
-        // 신청일자 설정
+//        // 신청일자 설정
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String dateString = format.format(date);
-        update.setDay(dateString);
-        // 신청일자 셋팅 완료
+//        String dateString = format.format(date);
+//        update.setDay(dateString);
+//        // 신청일자 셋팅 완료
 
-        // end 임의로 설정
-        update.setEnd("2022-12-01");
+        // 신청일자는 수정하면 안됨 (수정하면 수정한 날짜로 변경되기 때문)
+
+
+        // 종료일자 설정
+        Calendar cal = Calendar.getInstance(); // 날짜 계산을 위해 Calendar 추상클래스 선언 및 getInstance() 메서드 사용
+        cal.setTime(date);
+        cal.add(Calendar.DATE, member.getLast());
+        String dateString2 = format.format(cal.getTime());
+        update.setEnd(dateString2);
+        // 종료일자 셋팅 완료
 
         memberService.write(update);
         return "redirect:/member/list";
