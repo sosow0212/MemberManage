@@ -43,7 +43,7 @@ public class MemberController {
 
         // 신청일자 셋팅
         Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = format.format(date);
         member.setDay(dateString); // 신청일자 셋팅
 
@@ -98,7 +98,7 @@ public class MemberController {
 
 //        // 신청일자 설정
         Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        String dateString = format.format(date);
 //        update.setDay(dateString);
 //        // 신청일자 셋팅 완료

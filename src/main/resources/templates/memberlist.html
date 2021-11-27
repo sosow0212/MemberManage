@@ -31,8 +31,8 @@
             <td th:text="${member.getType()}">헬스, 필라테스</td>
             <td th:text="${member.getDay()}">2021-09-21 신청</td>
             <td th:text="${member.getEnd()}">2021-12-21 종료</td>
-            <td th:text="${member.getLast()}">30일 남았습니다.</td>
-            <td th:text="${member.getMoney()}">30000원 지불</td>
+            <td th:text="${member.getLast() + '일 남았습니다.'}">30일 남았습니다.</td>
+            <td th:text="${member.getMoney()} + '원 지불하셨습니다.'">30000원 지불</td>
         </tr>
         </tbody>
     </table>
