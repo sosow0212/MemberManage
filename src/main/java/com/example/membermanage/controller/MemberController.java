@@ -47,6 +47,7 @@ public class MemberController {
         String dateString = format.format(date);
         member.setDay(dateString); // 신청일자 셋팅
 
+
         // 종료일자 셋팅
         Calendar cal = Calendar.getInstance(); // 날짜 계산을 위해 Calendar 추상클래스 선언 및 getInstance() 메서드 사용
         cal.setTime(date);
