@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +28,43 @@ public class MemberController {
     // 멤버 정보 모두 불러오기
     @GetMapping("/member/list")
     public String memberList(Model model) {
+
+        List<Member> members = memberService.memberList();
+
+        /**
+         * 잔여일수 구하는 로직
+         * 잔여일수는 마감일자 - 오늘일자 이다.
+         * 즉 신청일자가 2021-11-27일이고 마감일자가 2021-11-29 이라면
+         * 잔여일수는 2일이다.
+         */
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate now = LocalDate.now();
+        String todayString = now.format(formatter); // 오늘 날짜 String화
+
+        for(Member member: members) {
+
+            // 끝나는 날 - 오늘의 날짜 == 구하고자 하는 남은날짜
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            String endDate = member.getEnd();
+            String today = todayString;
+
+            try {
+                Date endDateDate = dateFormat.parse(endDate);
+                Date todayDate = dateFormat.parse(today);
+
+                long diffDay = (endDateDate.getTime() - todayDate.getTime()) / (24*60*60*1000);
+                int lastDay = (int)diffDay;
+                if(lastDay < 0) {
+                    lastDay = 0; // 잔여일수가 0일 미만이라면 -x 일로 표기되는게 아니라 0일로 표기된다.
+                }
+
+                member.setLast(lastDay); // 잔여일수 삽입
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
         model.addAttribute("list", memberService.memberList());
         return "memberlist";
     }
