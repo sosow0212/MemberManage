@@ -29,4 +29,8 @@ public class Member {
 
     private int money; // 지불금액
 
+    private String phone;
+
+    private String address;
+
 }

@@ -58,6 +58,18 @@
                     <small class="text-muted" th:text="${member.getMoney() + '원'}">30000원 지불</small>
                 </div>
             </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">전화번호</h6>
+                    <small class="text-muted" th:text="${member.getPhone()}">010-xxxx-xxxx</small>
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">주소</h6>
+                    <small class="text-muted" th:text="${member.getAddress()}">경기도 용인시 ~~</small>
+                </div>
+            </li>
         </ul>
 
         <form class="card p-3">

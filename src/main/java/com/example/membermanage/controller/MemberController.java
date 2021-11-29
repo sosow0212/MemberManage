@@ -94,6 +94,8 @@ public class MemberController {
         update.setName(member.getName());
         update.setType(member.getType());
         update.setMoney(member.getMoney());
+        update.setAddress(member.getAddress());
+        update.setPhone(member.getPhone());
 
 
 //        // 신청일자 설정
