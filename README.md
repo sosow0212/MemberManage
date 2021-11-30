@@ -12,7 +12,7 @@
 - 사용기술 : Spring boot, MariaDB
 
 ### MariaDB - Entity
-- Id(PK), grade, name, type, day, endDay, last, money
+- Id(PK), grade, name, type, day, endDay, last, money, ++ address, phone
 
 <hr/>
 
