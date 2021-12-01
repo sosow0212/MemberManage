@@ -98,6 +98,40 @@ public class MemberController {
         member.setEnd(dateString2);
 
 
+        /**
+         * 할인율 셋팅
+         * 브론즈    0%
+         * 실버     5%
+         * 골드     10%
+         * 플래티넘  15%
+         * 다이아   20%
+         */
+
+        String memberGrade = member.getGrade();  // 멤버의 등급을 받아옴
+        double discountPriceDouble = 0; // 멤버로 할인된 가격
+
+        switch (memberGrade) {
+            case "브론즈" :
+                discountPriceDouble = member.getMoney();
+                break;
+            case "실버" :
+                discountPriceDouble = member.getMoney() * 0.95;
+                break;
+            case "골드" :
+                discountPriceDouble = member.getMoney() * 0.9;
+                break;
+            case "플래티넘" :
+                discountPriceDouble = member.getMoney() * 0.85;
+                break;
+            case "다이아" :
+                discountPriceDouble = member.getMoney() * 0.8;
+                break;
+        }
+
+        int discountPrice = (int)discountPriceDouble;
+        member.setMoney(discountPrice);
+
+
         memberService.write(member);
         return "redirect:/member/list";
     }
