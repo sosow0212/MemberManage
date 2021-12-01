@@ -73,11 +73,13 @@
                 <form th:action="@{/member/update/{id}(id=${member.id})}" method="post">
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="grade" class="form-label">회원등급</label>
-                            <input type="text" class="form-control" name="grade" id="grade" th:placeholder="${member.getGrade()}">
-                            <div class="invalid-feedback">
-                                name is required.
-                            </div>
+                            <label for="grade" class="form-label">회원등급</label><br/>
+                            <!-- <input type="text" class="form-control" name="grade" id="grade" placeholder="브론즈, 실버, 골드, 플래티넘, 다이아"> -->
+                            <label><input type="radio" name="grade" id="grade" value="브론즈">브론즈</label><br/>
+                            <label><input type="radio" name="grade" id="grade" value="실버">실버</label><br/>
+                            <label><input type="radio" name="grade" id="grade" value="골드">골드</label><br/>
+                            <label><input type="radio" name="grade" id="grade" value="플래티넘">플래티넘</label><br/>
+                            <label><input type="radio" name="grade" id="grade" value="다이아">다이아</label><br/>
                         </div>
 
                         <div class="col-12">
