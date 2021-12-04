@@ -238,6 +238,24 @@ public class MemberController {
     @PostMapping("/member/plusPro")
     public String memberPlusPro(int plusDate) {
         List<Member> members = memberService.memberList();
+
+        for(Member member: members) {
+            String endDay = member.getEnd(); // 멤버의 종료일 구하기
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            Calendar cal = Calendar.getInstance();
+            Date regDate = null;
+            try {
+                regDate = format.parse(endDay);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(regDate);
+
+            cal.add(Calendar.DATE, plusDate);
+            String dateValue = format.format(cal.getTime());
+            member.setEnd(dateValue);
+        }
         return "redirect:/member/list";
     }
 }
