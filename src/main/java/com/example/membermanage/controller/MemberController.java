@@ -225,6 +225,15 @@ public class MemberController {
 
         memberService.write(update);
         return "redirect:/member/list";
+    }
 
+
+
+    // 멤버 기간 연장
+    @GetMapping("/member/plus")
+    public String memberPlus(Model model) {
+        List<Member> members = memberService.memberList();
+        model.addAttribute("members", members);
+        return "plus";
     }
 }
