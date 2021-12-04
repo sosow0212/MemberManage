@@ -41,9 +41,8 @@ public class MemberController {
         LocalDate now = LocalDate.now();
         String todayString = now.format(formatter); // 오늘 날짜 String화
 
+        // 끝나는 날 - 오늘의 날짜 == 구하고자 하는 남은날짜
         for(Member member: members) {
-
-            // 끝나는 날 - 오늘의 날짜 == 구하고자 하는 남은날짜
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             String endDate = member.getEnd();
@@ -62,6 +61,13 @@ public class MemberController {
                 member.setLast(lastDay); // 잔여일수 삽입
             } catch (ParseException e) {
                 e.printStackTrace();
+            }
+        }
+
+        // 잔여일수 0일 남으면 자동 회원 삭제
+        for(Member member: members) {
+            if(member.getLast() == 0) {
+                memberService.memberDelete(member.getId());
             }
         }
 
