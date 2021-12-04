@@ -254,7 +254,14 @@ public class MemberController {
 
             cal.add(Calendar.DATE, plusDate);
             String dateValue = format.format(cal.getTime());
+
             member.setEnd(dateValue);
+            memberService.write(member);
+
+
+            // 오류발생 데이터는 정상적이지만
+            // setEnd(dateValue) 를 하면 업데이트가 안됨!
+            // 오류 해결 -> memberService.write(member) 을 해줘야 저장됨
         }
         return "redirect:/member/list";
     }
