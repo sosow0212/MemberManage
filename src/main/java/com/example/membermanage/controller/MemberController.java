@@ -236,4 +236,10 @@ public class MemberController {
         model.addAttribute("members", members);
         return "plus";
     }
+
+    @PostMapping("/member/plus")
+    public String memberPlusPro() {
+
+        return "redirect:/member/list";
+    }
 }

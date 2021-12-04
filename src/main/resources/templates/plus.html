@@ -7,26 +7,43 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>기간 연장</title>
 </head>
-<body class="d-flex flex-column h-100">
 
+<body class="container py-5">
 
-<div class="container mt-5">
+<div class="list-group mx-0">
+    <h1 class="text-center">전체 회원 기간 연장</h1>
+    <hr class="my-4">
 
-    <div th:each="member : ${members}" class="container mb-2">
-        <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked style="font-size: 1.375em;">
-            <span class="pt-1 form-checked-content">
-              <strong th:text="${member.getId() + '번 ' + member.getName()}">이름</strong>
-              <small class="d-block text-muted">
-                <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"/></svg>
-                1:00–2:00pm
-              </small>
+    <form action="">
+        <label class="list-group-item d-flex gap-2 mb-3">
+            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate1" value="7">
+            <span>
+                <strong>7일 연장</strong>
+                <small class="d-block text-muted">모든 회원의 기간을 7일 증가시킵니다.</small>
+          </span>
+        </label>
+
+        <label class="list-group-item d-flex gap-2 mb-3">
+            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate2" value="30">
+            <span>
+                <strong>30일 연장</strong>
+                <small class="d-block text-muted">모든 회원의 기간을 30일 증가시킵니다.</small>
+          </span>
+        </label>
+
+        <label class="list-group-item d-flex gap-2">
+            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate3" value="">
+            <span>
+                <strong>임의 설정</strong><br>
+                <input type="text" placeholder="연장 기간 입력" name="plusDate" id="plusDate4">
+                <small class="d-block text-muted">모든 회원의 기간을 임의로 설정합니다.</small>
             </span>
         </label>
-    </div>
 
+        <hr class="my-4">
+        <button class="w-100 btn btn-primary btn-lg mb-3" type="submit">수정하기</button>
+    </form>
 </div>
-
 
 </body>
 </html>
