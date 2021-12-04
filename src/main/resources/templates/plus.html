@@ -14,9 +14,9 @@
     <h1 class="text-center">전체 회원 기간 연장</h1>
     <hr class="my-4">
 
-    <form action="">
+    <form action="/member/plusPro" method="post">
         <label class="list-group-item d-flex gap-2 mb-3">
-            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate1" value="7">
+            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate" value="7">
             <span>
                 <strong>7일 연장</strong>
                 <small class="d-block text-muted">모든 회원의 기간을 7일 증가시킵니다.</small>
@@ -24,7 +24,7 @@
         </label>
 
         <label class="list-group-item d-flex gap-2 mb-3">
-            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate2" value="30">
+            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate" value="30">
             <span>
                 <strong>30일 연장</strong>
                 <small class="d-block text-muted">모든 회원의 기간을 30일 증가시킵니다.</small>
@@ -32,10 +32,9 @@
         </label>
 
         <label class="list-group-item d-flex gap-2">
-            <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate3" value="">
             <span>
                 <strong>임의 설정</strong><br>
-                <input type="text" placeholder="연장 기간 입력" name="plusDate" id="plusDate4">
+                <input type="text" placeholder="연장 기간 입력" name="plusDate" id="plusDate">
                 <small class="d-block text-muted">모든 회원의 기간을 임의로 설정합니다.</small>
             </span>
         </label>

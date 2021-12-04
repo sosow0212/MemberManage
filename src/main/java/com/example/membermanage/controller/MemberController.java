@@ -232,14 +232,12 @@ public class MemberController {
     // 멤버 기간 연장
     @GetMapping("/member/plus")
     public String memberPlus(Model model) {
-        List<Member> members = memberService.memberList();
-        model.addAttribute("members", members);
         return "plus";
     }
 
-    @PostMapping("/member/plus")
-    public String memberPlusPro() {
-
+    @PostMapping("/member/plusPro")
+    public String memberPlusPro(int plusDate) {
+        List<Member> members = memberService.memberList();
         return "redirect:/member/list";
     }
 }
