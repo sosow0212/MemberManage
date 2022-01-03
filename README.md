@@ -11,6 +11,21 @@
 ### 사용기술
 - 사용기술 : Spring boot, MariaDB
 
+### Dependency
+- Spring Web
+- Thymeleaf
+- Lombok
+- Spring Data Jpa
+- MariaDb Driver
+
+### application.properties
+- application.properties 파일은 resources 디렉토리 안에 만들고 아래 코드 입력
+``` spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+  spring.datasource.username= ID 입력
+  spring.datasource.password= PW 입력
+  spring.datasource.url=jdbc:mysql://localhost:3306/DB스키마명입력
+```
+
 ### MariaDB - Entity
 - Id(PK), grade, name, type, day, endDay, last, money, ++ address, phone
 

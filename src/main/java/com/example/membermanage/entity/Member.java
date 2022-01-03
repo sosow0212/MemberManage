@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Data
 public class Member {
 
-    @Id
+    @Id // Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
