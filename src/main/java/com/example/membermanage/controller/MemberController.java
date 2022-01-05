@@ -50,58 +50,11 @@ public class MemberController {
 
     // 회원정보 등록 처리
     @PostMapping("/member/writing")
-    public String memberWriting(Member member, Model model) {
+    public String memberWriting(Member beforeMember, Model model) {
 
         // ** 계산 영역 추후에 수정 **
 
-        // 신청일자 셋팅
-        Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format(date);
-        member.setDay(dateString); // 신청일자 셋팅
-
-
-        // 종료일자 셋팅
-        Calendar cal = Calendar.getInstance(); // 날짜 계산을 위해 Calendar 추상클래스 선언 및 getInstance() 메서드 사용
-        cal.setTime(date);
-        cal.add(Calendar.DATE, member.getLast());
-        String dateString2 = format.format(cal.getTime());
-        member.setEnd(dateString2);
-
-
-        /**
-         * 할인율 셋팅
-         * 브론즈    0%
-         * 실버     5%
-         * 골드     10%
-         * 플래티넘  15%
-         * 다이아   20%
-         */
-
-        String memberGrade = member.getGrade();  // 멤버의 등급을 받아옴
-        double discountPriceDouble = 0; // 멤버로 할인된 가격
-
-        switch (memberGrade) {
-            case "브론즈" :
-                discountPriceDouble = member.getMoney();
-                break;
-            case "실버" :
-                discountPriceDouble = member.getMoney() * 0.95;
-                break;
-            case "골드" :
-                discountPriceDouble = member.getMoney() * 0.9;
-                break;
-            case "플래티넘" :
-                discountPriceDouble = member.getMoney() * 0.85;
-                break;
-            case "다이아" :
-                discountPriceDouble = member.getMoney() * 0.8;
-                break;
-        }
-
-        int discountPrice = (int)discountPriceDouble;
-        member.setMoney(discountPrice);
-
+        Member member = memberService.setBeforeWriting(beforeMember);
 
         memberService.write(member);
         return "redirect:/member/list";
@@ -135,66 +88,12 @@ public class MemberController {
     // 게시글 수정 처리
     @PostMapping("/member/update/{id}")
     public String memberUpdate(@PathVariable("id") Integer id, Member member) {
-        Member update = memberService.memberView(id);
+        Member update = memberService.memberView(id); // 아이디로 멤버(수정된) 찾고
 
-        /**
-         * 할인율 셋팅
-         * 브론즈    0%
-         * 실버     5%
-         * 골드     10%
-         * 플래티넘  15%
-         * 다이아   20%
-         */
-
-        String memberGrade = member.getGrade();  // 멤버의 등급을 받아옴
-        double discountPriceDouble = 0; // 멤버로 할인된 가격
-        switch (memberGrade) {
-            case "브론즈" :
-                discountPriceDouble = member.getMoney();
-                break;
-            case "실버" :
-                discountPriceDouble = member.getMoney() * 0.95;
-                break;
-            case "골드" :
-                discountPriceDouble = member.getMoney() * 0.9;
-                break;
-            case "플래티넘" :
-                discountPriceDouble = member.getMoney() * 0.85;
-                break;
-            case "다이아" :
-                discountPriceDouble = member.getMoney() * 0.8;
-                break;
-        }
-        int discountPrice = (int)discountPriceDouble;
+        Member after = memberService.setBeforeUpdating(member, update);
 
 
-        update.setGrade(member.getGrade());
-        update.setName(member.getName());
-        update.setType(member.getType());
-        update.setMoney(discountPrice);
-        update.setAddress(member.getAddress());
-        update.setPhone(member.getPhone());
-
-
-//        // 신청일자 설정
-        Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//        String dateString = format.format(date);
-//        update.setDay(dateString);
-//        // 신청일자 셋팅 완료
-
-        // 신청일자는 수정하면 안됨 (수정하면 수정한 날짜로 변경되기 때문)
-
-
-        // 종료일자 설정
-        Calendar cal = Calendar.getInstance(); // 날짜 계산을 위해 Calendar 추상클래스 선언 및 getInstance() 메서드 사용
-        cal.setTime(date);
-        cal.add(Calendar.DATE, member.getLast());
-        String dateString2 = format.format(cal.getTime());
-        update.setEnd(dateString2);
-        // 종료일자 셋팅 완료
-
-        memberService.write(update);
+        memberService.write(after);
         return "redirect:/member/list";
     }
 
