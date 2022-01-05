@@ -216,8 +216,36 @@ public class MemberService {
         update.setEnd(dateString2);
         // 종료일자 셋팅 완료
 
-
         return update;
+    }
+
+
+
+    public void plusDay(List<Member> members, int plusDate) {
+        for(Member member: members) {
+            String endDay = member.getEnd(); // 멤버의 종료일 구하기
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            Calendar cal = Calendar.getInstance();
+            Date regDate = null;
+            try {
+                regDate = format.parse(endDay);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(regDate);
+
+            cal.add(Calendar.DATE, plusDate);
+            String dateValue = format.format(cal.getTime());
+
+            member.setEnd(dateValue);
+            memberRepository.save(member);
+
+
+            // 오류발생 데이터는 정상적이지만
+            // setEnd(dateValue) 를 하면 업데이트가 안됨!
+            // 오류 해결 -> memberService.write(member) 을 해줘야 저장됨
+        }
     }
 
 }

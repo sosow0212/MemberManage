@@ -11,9 +11,8 @@
 <body class="container py-5">
 
 <div class="list-group mx-0">
-    <h1 class="text-center">전체 회원 기간 연장</h1>
-    <hr class="my-4">
 
+    <h1 class="text-center">전체 회원 기간 연장</h1>
     <form action="/member/plusPro" method="post">
         <label class="list-group-item d-flex gap-2 mb-3">
             <input class="form-check-input flex-shrink-0" type="radio" name="plusDate" id="plusDate" value="7">
@@ -31,6 +30,17 @@
           </span>
         </label>
 
+        <hr class="my-4">
+        <button class="w-100 btn btn-primary btn-lg mb-3" type="submit">수정하기</button>
+    </form>
+    <hr class="my-4 mb-5">
+    <hr class="my-4 mb-5">
+
+    <!--  새로 추가  -->
+
+    <h1 class="text-center">전체 회원 기간 임의 연장</h1>
+    <form action="/member/plusPro" method="post">
+
         <label class="list-group-item d-flex gap-2">
             <span>
                 <strong>임의 설정</strong><br>
@@ -42,6 +52,7 @@
         <hr class="my-4">
         <button class="w-100 btn btn-primary btn-lg mb-3" type="submit">수정하기</button>
     </form>
+
 </div>
 
 </body>
