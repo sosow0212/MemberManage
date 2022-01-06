@@ -36,6 +36,7 @@ public class MemberController {
     // 회원정보 등록
     @GetMapping("/member/write")
     public String memberWriteForm() {
+
         return "memberwrite";
     }
 

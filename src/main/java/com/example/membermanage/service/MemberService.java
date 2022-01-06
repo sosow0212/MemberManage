@@ -28,10 +28,6 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    // CRUD
-    // -> Create = save()
-    // -> Read = findAll(), findById()
-
 
     // 회원 리스트 모두 불러오기
     public List<Member> memberList() {
@@ -91,16 +87,16 @@ public class MemberService {
                 e.printStackTrace();
             }
         }
-
         // 잔여일수 0일 남으면 자동 회원 삭제
         for (Member member : members) {
             if (member.getLast() == 0) {
                 memberRepository.deleteById(member.getId());
             }
         }
-
         return members;
     }
+
+
 
 
     public Member setBeforeWriting(Member member) {
@@ -149,10 +145,8 @@ public class MemberService {
                 discountPriceDouble = member.getMoney() * 0.8;
                 break;
         }
-
         int discountPrice = (int) discountPriceDouble;
         member.setMoney(discountPrice);
-
         return member;
     }
 
@@ -198,14 +192,9 @@ public class MemberService {
         update.setPhone(member.getPhone());
 
 
-//        // 신청일자 설정
+        // 신청일자 설정, 신청일자는 수정하면 안됨 (수정하면 수정한 날짜로 변경되기 때문)
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//        String dateString = format.format(date);
-//        update.setDay(dateString);
-//        // 신청일자 셋팅 완료
-
-        // 신청일자는 수정하면 안됨 (수정하면 수정한 날짜로 변경되기 때문)
 
 
         // 종료일자 설정
@@ -214,7 +203,6 @@ public class MemberService {
         cal.add(Calendar.DATE, member.getLast());
         String dateString2 = format.format(cal.getTime());
         update.setEnd(dateString2);
-        // 종료일자 셋팅 완료
 
         return update;
     }
@@ -240,13 +228,7 @@ public class MemberService {
 
             member.setEnd(dateValue);
             memberRepository.save(member);
-
-
-            // 오류발생 데이터는 정상적이지만
-            // setEnd(dateValue) 를 하면 업데이트가 안됨!
-            // 오류 해결 -> memberService.write(member) 을 해줘야 저장됨
         }
     }
-
 }
 
