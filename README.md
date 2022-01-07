@@ -18,6 +18,7 @@
 - Lombok
 - Spring Data Jpa
 - MariaDb Driver
+- Spring Security
 
 ### application.properties
 - application.properties 파일은 resources 디렉토리 안에 만들고 아래 코드 입력
@@ -45,6 +46,7 @@
 - 전체 회원 기간 연장 기능 제작 (2021-12-02)
 - 잔여일수 0일 남았을 때 명단에서 회원 삭제 (2021-12-04)
 - Controller 와 Service의 기능을 살려 코드 분리 (2022-01-05)
+- Spring Security를 도입해서 로그인 및 회원가입 구현 (2022-01-07)
 
 
 ### 문제점
