@@ -44,7 +44,7 @@ public class MemberController {
 
     // 회원정보 등록 처리
     @PostMapping("/member/writing")
-    public String memberWriting(Member beforeMember, Model model) {
+    public String memberWriting(Member beforeMember) {
 
         // ** 계산 영역 추후에 수정 **
         Member member = memberService.setBeforeWriting(beforeMember);
@@ -100,7 +100,7 @@ public class MemberController {
 
     // 멤버 기간 연장 GetMapping
     @GetMapping("/member/plus")
-    public String memberPlus(Model model) {
+    public String memberPlus() {
         return "plus";
     }
 
