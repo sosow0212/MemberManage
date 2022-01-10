@@ -1,8 +1,10 @@
 package com.example.membermanage.controller;
 
+import com.example.membermanage.config.auth.PrincipalDetails;
 import com.example.membermanage.entity.Member;
 import com.example.membermanage.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ public class MemberController {
 
     // 멤버 정보 모두 불러오기
     @GetMapping("/member/list")
-    public String memberList(Model model) {
+    public String memberList(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
         // 회원 리스트 모두 불러오기
         List<Member> allMembers = memberService.memberList();
@@ -28,6 +30,8 @@ public class MemberController {
         List<Member> members = memberService.getDay(allMembers);
 
         model.addAttribute("list", memberService.memberList());
+        model.addAttribute("signinUser", principalDetails.getUser());
+        System.out.println(principalDetails.getUser().getName());
         return "memberlist";
     }
 
