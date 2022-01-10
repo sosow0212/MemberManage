@@ -16,9 +16,9 @@
     <div class="card p-4">
         <div class=" image d-flex flex-column justify-content-center align-items-center">
             <button class="btn btn-secondary"><img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100"/></button>
-            <span class="name mt-3">이름</span> <span class="idd">@아이디</span>
+            <span class="name mt-3" th:text="${user.getName()}">이름</span> <span class="idd" th:text="${user.getId()}">@아이디</span>
             <div class="d-flex flex-row justify-content-center align-items-center gap-2"><span><i class="fa fa-copy"></i></span></div>
-            <div class="d-flex flex-row justify-content-center align-items-center mt-3"><span class="number">유저권한 <span class="follow">등급입니다.</span></span></div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3"><span class="number" th:text="${user.getRole()}">유저권한 <span class="follow">등급입니다.</span></span></div>
             <div class=" d-flex mt-2">
                 <button class="btn1 btn-dark">Edit Profile</button>
             </div>
@@ -28,7 +28,7 @@
             <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"><span><i
                     class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span> <span><i
                     class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span></div>
-            <div class=" px-2 rounded mt-4 date "><span class="join">가입날짜</span></div>
+            <div class=" px-2 rounded mt-4 date "><span class="join" th:text="${user.getCreateDate()}">가입날짜</span></div>
         </div>
     </div>
 </div>

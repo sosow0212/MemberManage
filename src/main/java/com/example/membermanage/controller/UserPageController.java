@@ -28,7 +28,9 @@ public class UserPageController {
             // 등급이 admin 이면 어드민 페이지로 이동
             return "adminpage";
         } else {
-            return "redirect:/member/list";
+            User newUser = userPageService.findById(id);
+            model.addAttribute("user", newUser);
+            return "userpage";
         }
     }
 }
