@@ -19,18 +19,18 @@ public class UserPageController {
     @GetMapping("/user/{id}")
     public String userProfile(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
-        if(principalDetails.getUser().getRole() == "ROLE_USER") {
-            // 등급이 user 면 로그인한 유저의 프로필로 이동
+        System.out.println(principalDetails.getUser().getRole());
+
+        if (principalDetails.getUser().getRole() == "ROLE_ADMIN") {
+            // 등급이 admin 이면 어드민 페이지로 이동
             User newUser = userPageService.findById(principalDetails.getUser().getId());
             model.addAttribute("user", newUser);
-            return "userpage";
-        } else if(principalDetails.getUser().getRole() == "ROLE_ADMIN") {
-            // 등급이 admin 이면 어드민 페이지로 이동
             return "adminpage";
-        } else {
-            User newUser = userPageService.findById(id);
-            model.addAttribute("user", newUser);
-            return "userpage";
         }
+
+        // 등급이 user 면 로그인한 유저의 프로필로 이동
+        User newUser = userPageService.findById(principalDetails.getUser().getId());
+        model.addAttribute("user", newUser);
+        return "userpage";
     }
 }
